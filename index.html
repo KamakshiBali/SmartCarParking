@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Authentication</title>      
+    <style>
+        body {
+            background-image: url('SMART CAR PARKING & RENTAL SYSTEM.jpg'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #0073e6;
+            color: white;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #005bb7;
+        }
+
+        #container {
+            display: flex;
+            justify-content: space-around;
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div>
+            <h1 style="background-color: white;">Sign Up</h1>
+            <form id="signup-form">
+                <input type="text" id="new-username" placeholder="New Username" required>
+                <input type="password" id="new-password" placeholder="New Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        <div>
+            <h1 style="background-color: white;">Login</h1>
+            <form id="login-form">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const signupForm = document.getElementById('signup-form');
+            const loginForm = document.getElementById('login-form');
+
+            signupForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const newUsername = signupForm['new-username'].value;
+                const newPassword = signupForm['new-password'].value;
+
+                localStorage.setItem(newUsername, newPassword);
+                alert('Sign-up successful!');
+            });
+
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const username = loginForm.username.value;
+                const password = loginForm.password.value;
+
+                const storedPassword = localStorage.getItem(username);
+                if (password === storedPassword) {
+                    alert('Login successful!');
+                    window.location.href = 'new_thingspeakinteg.html'; 
+                } else {
+                    alert('Invalid username or password. Please try again.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
